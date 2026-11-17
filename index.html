@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iago de Andrade</title>
+<meta name="description" content="Iago de Andrade, jornalista multiplataforma e profissional de comunicação: televisão, jornalismo, produção audiovisual e estratégia de conteúdo.">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#000;
+    --fg:#fff;
+    --muted:#b4b4b4;
+    --line:#2b2b2b;
+    --accent:#6653ff;
+    --accent-2:#8280ff;
+    --head:"Archivo", "Arial Narrow", sans-serif;
+    --serif:"Source Serif 4", Georgia, serif;
+    --mono:"IBM Plex Mono", ui-monospace, monospace;
+    --gutter:clamp(1.25rem, 4vw, 2.5rem);
+    --max:1300px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:80px}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--serif);font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  img,video{display:block;max-width:100%}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--accent-2);outline-offset:3px}
+  .skip{position:absolute;left:-9999px}
+  .skip:focus{left:1rem;top:1rem;background:var(--accent);padding:.5rem 1rem;z-index:99}
+
+  /* Tipografia "Intercept" */
+  .hed{font-family:var(--head);font-weight:900;font-stretch:72%;font-variation-settings:"wdth" 72;text-transform:uppercase;line-height:.92;letter-spacing:-.005em;margin:0}
+  .kicker{font-family:var(--head);font-weight:700;font-stretch:80%;color:var(--accent-2);font-size:1.35rem;line-height:1.1;margin:0 0 .35rem}
+  .byline{font-family:var(--mono);font-size:.78rem;color:var(--accent-2);letter-spacing:.02em}
+  .dek{color:var(--muted);font-size:1.05rem}
+  .bar{display:block;width:64px;height:6px;background:var(--fg);margin-bottom:1.1rem}
+
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+
+
+  .typer .caret{display:inline-block;width:.45em;height:.12em;margin-left:.06em;background:var(--accent-2);vertical-align:baseline;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  /* Header */
+  header.top{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+  .top-in{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;height:68px}
+  .brand{font-family:var(--head);font-weight:900;font-stretch:75%;font-size:1.45rem;line-height:.85;text-decoration:none;letter-spacing:-.01em}
+  .brand span{display:block}
+  .brand i{font-style:normal;color:var(--accent-2)}
+  nav.sec{display:flex;gap:1.4rem;font-family:var(--head);font-weight:700;font-stretch:85%;font-size:.95rem}
+  nav.sec a{text-decoration:none;color:var(--fg);opacity:.85}
+  nav.sec a:hover{opacity:1;color:var(--accent-2)}
+  .top-cta{font-family:var(--head);font-weight:800;font-stretch:85%;text-transform:uppercase;font-size:.9rem;color:var(--accent-2);text-decoration:none;white-space:nowrap}
+  .top-cta:hover{color:var(--fg)}
+  .menu-btn{display:none;background:none;border:0;color:var(--fg);cursor:pointer;padding:.4rem}
+  .menu-btn span{display:block;width:22px;height:2px;background:currentColor;margin:5px 0}
+
+  /* Hero */
+  .hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:end;padding:clamp(2rem,5vw,4rem) 0 2rem}
+  .hero h1{font-size:clamp(3rem,7.6vw,7rem);margin:.6rem 0 1.2rem}
+  .hero .dek{max-width:52ch;font-size:1.15rem;margin:0}
+  .hero-photo{position:relative;margin:0;aspect-ratio:4/5;overflow:hidden;background:#111}
+  .slides{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+  .slides::-webkit-scrollbar{display:none}
+  .slides img{flex:0 0 100%;width:100%;height:100%;min-width:0;object-fit:cover;scroll-snap-align:start;filter:grayscale(.15) contrast(1.05)}
+  .hero-photo::after{content:"";position:absolute;inset:auto 0 0 0;height:30%;background:linear-gradient(transparent,rgba(0,0,0,.75));pointer-events:none}
+  .hero-photo .nav{position:absolute;bottom:1rem;z-index:2;width:42px;height:42px;border:0;background:var(--fg);color:var(--bg);font-family:var(--head);font-weight:900;font-size:1.5rem;line-height:1;cursor:pointer}
+  .hero-photo .prev{right:4.1rem}.hero-photo .next{right:1rem}
+  .hero-photo .nav:hover{background:var(--accent);color:var(--fg)}
+  .credit{position:absolute;left:1rem;bottom:1.2rem;z-index:2;font-family:var(--mono);font-size:.7rem;color:#ddd}
+  .cta-block{display:block;background:var(--accent);color:var(--fg);text-decoration:none;font-family:var(--head);font-weight:800;font-stretch:85%;text-transform:uppercase;font-size:1rem;padding:1.15rem 1.4rem;margin-top:1.8rem;transition:background .15s}
+  .cta-block:hover{background:#5140e6}
+  .cta-row{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
+  .btn{font-family:var(--head);font-weight:800;font-stretch:85%;text-transform:uppercase;font-size:.88rem;text-decoration:none;padding:.75rem 1.1rem;border:2px solid var(--fg);transition:.15s}
+  .btn:hover{background:var(--fg);color:var(--bg)}
+  .btn.solid{background:var(--fg);color:var(--bg)}
+  .btn.solid:hover{background:var(--accent);border-color:var(--accent);color:var(--fg)}
+
+  /* Stats */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:6px solid var(--fg);margin-top:1rem}
+  .stat{padding:1.1rem 1.2rem 1.3rem 0;border-right:1px solid var(--line)}
+  .stat + .stat{padding-left:1.2rem}
+  .stat:last-child{border-right:0}
+  .stat b{display:block;font-family:var(--head);font-weight:900;font-stretch:75%;text-transform:uppercase;font-size:1.6rem;line-height:1}
+  .stat span{font-family:var(--mono);font-size:.75rem;color:var(--accent-2)}
+
+  /* Sections */
+  section{padding:clamp(3rem,7vw,5.5rem) 0 0}
+  .sec-head{border-top:6px solid var(--fg);padding-top:1rem;margin-bottom:2rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:end}
+  .sec-head h2{font-size:clamp(2.4rem,5vw,4.2rem)}
+  .sec-head p{margin:0;color:var(--muted)}
+  .sec-head.solo{grid-template-columns:1fr}
+
+  /* Sobre */
+  .about{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:3rem}
+  .about p{margin:0 0 1.1rem;font-size:1.2rem;line-height:1.65}
+  .about p:first-child::first-letter{font-family:var(--head);font-weight:900;font-stretch:75%;float:left;font-size:4.6rem;line-height:.8;padding:.35rem .5rem 0 0;color:var(--fg)}
+  .skills{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+  .skills li{font-family:var(--mono);font-size:.85rem;padding:.6rem 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
+  .skills li::after{content:"→";color:var(--accent-2)}
+
+  /* Experiência */
+  .xp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
+  .xp{padding:1.8rem 2rem 2rem 0;border-bottom:1px solid var(--line)}
+  .xp:nth-child(even){padding-left:2rem;padding-right:0;border-left:1px solid var(--line)}
+  .xp h3{font-size:clamp(1.5rem,2.6vw,2.1rem);margin:.3rem 0 .4rem}
+  .xp .role{font-family:var(--head);font-weight:700;font-stretch:85%;color:var(--accent-2);font-size:1.15rem;margin:0 0 .9rem}
+  .xp ul{margin:0;padding:0;list-style:none}
+  .xp li{color:var(--muted);font-size:1rem;padding-left:1.1rem;position:relative;margin:.25rem 0}
+  .xp li::before{content:"";position:absolute;left:0;top:.68em;width:6px;height:6px;background:var(--accent)}
+  .xp-secondary .xp h3{font-size:clamp(1.25rem,2vw,1.6rem)}
+
+  /* Feature (layout alternado estilo Intercept) */
+  .feature{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(1.5rem,4vw,3rem);align-items:center;margin-bottom:3rem}
+  .feature .txt{text-align:right}
+  .feature .txt .bar{margin-left:auto}
+  .feature h3{font-size:clamp(2rem,3.6vw,3.2rem);margin:0 0 .8rem}
+  .feature p{color:var(--muted);margin:.8rem 0}
+  .feature figure{margin:0;position:relative}
+  .feature figure img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;background:#111}
+  .feature.flip .txt{text-align:left;order:2}
+  .feature.flip .txt .bar{margin-left:0}
+  .tags{list-style:none;margin:1rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem}
+  .feature .txt .tags{justify-content:flex-end}
+  .feature.flip .txt .tags,.tags.left{justify-content:flex-start}
+  .tags li{font-family:var(--mono);font-size:.72rem;border:1px solid var(--accent-2);color:var(--accent-2);padding:.2rem .55rem}
+  .big-num{display:flex;align-items:baseline;gap:.7rem;justify-content:flex-end;margin-top:1.4rem}
+  .big-num b{font-family:var(--head);font-weight:900;font-stretch:72%;font-size:4.5rem;line-height:.8;color:var(--fg)}
+  .big-num span{font-family:var(--mono);font-size:.78rem;color:var(--accent-2);max-width:22ch;text-align:left}
+  .play-link{position:relative;display:block}
+  .play-link::after{content:"";position:absolute;left:1.2rem;bottom:1.2rem;width:64px;height:64px;background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z' fill='white'/%3E%3C/svg%3E") center/32px no-repeat;transition:transform .15s}
+  .play-link:hover::after{transform:scale(1.08)}
+  .read-more{font-family:var(--head);font-weight:800;font-stretch:85%;text-transform:uppercase;color:var(--accent-2);text-decoration:none;font-size:.95rem}
+  .read-more:hover{color:var(--fg)}
+
+  /* Lista de episódios */
+  .eps{list-style:none;margin:0;padding:0;border-top:1px solid var(--fg)}
+  .eps li{border-bottom:1px solid var(--line)}
+  .eps a{display:grid;grid-template-columns:3rem 1fr auto auto;gap:1.2rem;align-items:baseline;padding:1.15rem 0;text-decoration:none;transition:background .15s,padding .15s}
+  .eps a:hover{background:#0d0d0d;padding-left:.8rem;padding-right:.8rem}
+  .eps .n{font-family:var(--mono);font-size:.8rem;color:var(--accent-2)}
+  .eps .t{font-family:var(--head);font-weight:900;font-stretch:75%;text-transform:uppercase;font-size:clamp(1.15rem,2.2vw,1.65rem);line-height:1}
+  .eps .r{font-family:var(--mono);font-size:.75rem;color:var(--muted)}
+  .eps .go{font-family:var(--head);font-weight:800;font-stretch:85%;text-transform:uppercase;font-size:.85rem;color:var(--accent-2)}
+  .eps a:hover .t{color:var(--accent-2)}
+  .note{font-family:var(--mono);font-size:.75rem;color:var(--muted);margin:1rem 0 0}
+
+  /* Trabalhos */
+  .vids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2.5rem;margin-bottom:3.5rem}
+  .vid video{width:100%;aspect-ratio:16/10;object-fit:cover;background:#111}
+  .vid .kicker{margin-top:1.1rem}
+  .vid h3{font-size:clamp(1.7rem,2.8vw,2.4rem);margin:0 0 .6rem}
+  .vid p{color:var(--muted);margin:.4rem 0}
+  .filters{display:flex;gap:0;margin:0 0 1.8rem;border:2px solid var(--fg);width:max-content}
+  .filters button{background:none;color:var(--fg);border:0;font-family:var(--head);font-weight:800;font-stretch:85%;text-transform:uppercase;font-size:.9rem;padding:.65rem 1.2rem;cursor:pointer}
+  .filters button + button{border-left:2px solid var(--fg)}
+  .filters button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+  .filters button:hover:not([aria-pressed="true"]){color:var(--accent-2)}
+  .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2.4rem 2rem}
+  .card{border-top:1px solid var(--fg);padding-top:1rem;display:flex;flex-direction:column}
+  .card[hidden]{display:none}
+  .card .kicker{font-size:1.05rem;flex:none;margin:0 0 .35rem;color:var(--accent-2)}
+  .card h3{font-size:1.55rem;margin:0 0 .6rem}
+  .card p{color:var(--muted);font-size:.98rem;margin:0 0 .9rem;flex:1}
+  .card .links{display:flex;gap:1.2rem;flex-wrap:wrap}
+  .card a{font-family:var(--mono);font-size:.78rem;color:var(--accent-2);text-decoration:none}
+  .card a:hover{color:var(--fg);text-decoration:underline}
+  .card.big h3{font-size:2rem}
+
+  /* Contato */
+  .contact{background:var(--accent);margin-top:clamp(3.5rem,8vw,6rem);padding:clamp(2.5rem,6vw,4.5rem) var(--gutter)}
+  .contact-in{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1.2fr .8fr;gap:2.5rem;align-items:end}
+  .contact .byline{color:#fff;opacity:.85}
+  .contact h2{font-size:clamp(3rem,8vw,6.5rem);margin:.4rem 0 1rem}
+  .contact p{margin:0;font-size:1.15rem;max-width:48ch}
+  .mail{display:block;background:var(--bg);color:var(--fg);font-family:var(--mono);font-size:clamp(.85rem,1.6vw,1.05rem);padding:1.1rem 1.2rem;text-decoration:none;word-break:break-all;margin-bottom:.8rem}
+  .mail:hover{color:var(--accent-2)}
+  .contact .btn{border-color:var(--fg)}
+  .contact .btn.solid{background:var(--bg);border-color:var(--bg);color:var(--fg)}
+  .contact .btn.solid:hover{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+
+  footer{border-top:1px solid var(--line)}
+  .foot{display:flex;justify-content:space-between;gap:2rem;padding:2rem 0 3rem;flex-wrap:wrap}
+  .foot .brand{font-size:1.2rem}
+  .foot p{font-family:var(--mono);font-size:.72rem;color:var(--muted);max-width:60ch;margin:0}
+
+  @media (max-width:980px){
+    nav.sec{display:none}
+    nav.sec.open{display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:var(--bg);padding:1.2rem var(--gutter) 1.6rem;border-bottom:1px solid var(--line);gap:.9rem;font-size:1.4rem;text-transform:uppercase;font-weight:900;font-stretch:75%}
+    .menu-btn{display:block}
+    .hero,.about,.feature,.vids,.contact-in,.sec-head{grid-template-columns:1fr}
+    .hero-photo{aspect-ratio:4/4.4}
+    .feature .txt,.feature.flip .txt{text-align:left;order:2}
+    .feature .txt .bar{margin-left:0}
+    .feature .txt .tags,.big-num{justify-content:flex-start}
+    .grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:640px){
+    body{font-size:17px}
+    .stats{grid-template-columns:1fr}
+    .stat,.stat + .stat{padding:1rem 0;border-right:0;border-bottom:1px solid var(--line)}
+    .xp-grid{grid-template-columns:1fr}
+    .xp,.xp:nth-child(even){padding:1.5rem 0;border-left:0}
+    .grid{grid-template-columns:1fr}
+    .eps a{grid-template-columns:2.2rem 1fr;row-gap:.35rem}
+    .eps .r{grid-column:2}
+    .eps .go{display:none}
+    .top-cta{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#sobre">Pular para o conteúdo</a>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#" aria-label="Iago de Andrade, início"><span>Iago de</span><span>Andrade<i>_</i></span></a>
+    <nav class="sec" id="menu" aria-label="Seções">
+      <a href="#sobre">Sobre</a>
+      <a href="#experiencia">Experiência</a>
+      <a href="#sp-games">SP Games</a>
+      <a href="#jornal-alesp">Ao vivo</a>
+      <a href="#trabalhos">Trabalhos</a>
+      <a href="#projetos">Projetos</a>
+    </nav>
+    <a class="top-cta" href="#contato">Fale comigo</a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <div>
+      <span class="bar"></span>
+      <p class="kicker">Jornalista multiplataforma e profissional de comunicação</p>
+      <h1 class="hed typer" aria-label="Da pauta à tela: comunicação de ponta a ponta."><span class="typed" aria-hidden="true">Da pauta à tela: comunicação de ponta a ponta.</span><span class="caret" aria-hidden="true"></span></h1>
+      <p class="dek">Televisão, jornalismo, produção audiovisual e estratégia de conteúdo. Atuo em todas as etapas do processo: da concepção da pauta e construção do roteiro à apresentação diante das câmeras, produção e distribuição multiplataforma.</p>
+      <div class="cta-row">
+        <a class="btn solid" href="#trabalhos">Ver trabalhos</a>
+        <a class="btn" href="#contato">Falar comigo</a>
+        <a class="btn" href="curriculo-iago-de-andrade.pdf" target="_blank" rel="noopener">Ver currículo</a>
+      </div>
+    </div>
+    <figure class="hero-photo">
+      <div class="slides" id="slides" tabindex="0" aria-label="Fotos de Iago de Andrade">
+        <img src="foto-iago-1.jpg" alt="Iago de Andrade falando ao microfone em um estúdio" width="800" height="1000">
+        <img src="foto-iago-2.jpg" alt="Retrato sorrindo de Iago de Andrade" width="800" height="1000" loading="lazy">
+      </div>
+      <span class="credit" id="credit">Foto 1 de 2</span>
+      <button type="button" class="nav prev" id="prevBtn" aria-label="Foto anterior">‹</button>
+      <button type="button" class="nav next" id="nextBtn" aria-label="Próxima foto">›</button>
+    </figure>
+  </div>
+
+  <a class="cta-block" href="#trabalhos">Ver trabalhos selecionados →</a>
+
+  <div class="stats" aria-label="Trajetória">
+    <div class="stat"><b>ALESP</b><span>Comunicação pública</span></div>
+    <div class="stat"><b>Record TV</b><span>Jornalismo e produção de conteúdo</span></div>
+    <div class="stat"><b>Grupo Bandeirantes</b><span>Jornalismo e produção de conteúdo</span></div>
+  </div>
+
+  <section id="sobre">
+    <div class="sec-head solo"><h2 class="hed">Sobre</h2></div>
+    <div class="about">
+      <div>
+        <p>Sou jornalista e profissional de comunicação com experiência em televisão, jornalismo, produção audiovisual e estratégia de conteúdo. Passei por grandes grupos de comunicação, atuei em comunicação pública e desenvolvi projetos digitais que conectam informação, criatividade e linguagem multiplataforma.</p>
+        <p>Já trabalhei em várias etapas da produção: construção de pautas e roteiros, apresentação diante das câmeras, cobertura jornalística, produção editorial e distribuição de conteúdo.</p>
+        <p>Acredito numa comunicação que une visão editorial, clareza, criatividade e compreensão de audiência.</p>
+      </div>
+      <ul class="skills" aria-label="Habilidades">
+        <li>Televisão</li><li>Apresentação</li><li>Reportagem</li><li>Entradas ao vivo</li><li>Roteiro e pauta</li><li>Produção audiovisual</li><li>Estratégia de conteúdo</li><li>Redes sociais</li><li>Comunicação pública</li><li>Comunicação digital</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="experiencia">
+    <div class="sec-head">
+      <h2 class="hed">Experiência</h2>
+      <p>Televisão, comunicação pública e produção de conteúdo, da coordenação de equipes à apresentação.</p>
+    </div>
+    <div class="xp-grid">
+      <article class="xp">
+        <div class="byline">2026</div>
+        <h3 class="hed">Assembleia Legislativa do Estado de São Paulo</h3>
+        <p class="role">Criador de conteúdo digital</p>
+        <ul>
+          <li>Criação de conteúdo digital para redes sociais</li>
+          <li>Apresentação de programas na TV Alesp</li>
+          <li>Elaboração de roteiros e pautas jornalísticas</li>
+          <li>Adaptação de temas políticos para linguagem acessível</li>
+          <li>Produção de conteúdo audiovisual e vídeos institucionais</li>
+          <li>Branding e comunicação institucional</li>
+        </ul>
+      </article>
+      <article class="xp">
+        <div class="byline">2022 a 2025</div>
+        <h3 class="hed">Record TV</h3>
+        <p class="role">Coordenador de rede de telejornalismo</p>
+        <ul>
+          <li>Coordenação de equipes de reportagem</li>
+          <li>Supervisão de edição e controle do conteúdo jornalístico</li>
+          <li>Planejamento e execução de coberturas jornalísticas</li>
+          <li>Coordenação de equipes em entradas ao vivo</li>
+          <li>Edição de texto</li>
+          <li>Gravação de OFFs e reportagens para telejornais</li>
+          <li>Elaboração do espelho dos telejornais</li>
+        </ul>
+      </article>
+    </div>
+    <div class="xp-grid xp-secondary">
+      <article class="xp">
+        <div class="byline">2025</div>
+        <h3 class="hed">Stenna Consultoria e Projetos</h3>
+        <p class="role">Analista de Programação Jr. I</p>
+        <ul>
+          <li>Coordenação entre as áreas de conteúdo e marketing</li>
+          <li>Monitoramento de desempenho de audiência</li>
+          <li>Apoio à organização e ao planejamento de grades de programação</li>
+        </ul>
+      </article>
+      <article class="xp">
+        <div class="byline">2020 a 2022</div>
+        <h3 class="hed">Grupo Bandeirantes de Comunicação</h3>
+        <p class="role">Assistente de programação</p>
+        <ul>
+          <li>Coordenação entre as áreas de conteúdo e marketing</li>
+          <li>Monitoramento de desempenho de audiência</li>
+          <li>Interface entre as áreas de jornalismo, programação e marketing</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="sp-games">
+    <div class="sec-head">
+      <h2 class="hed">SP Games</h2>
+      <p>Da pauta à apresentação, uma editoria sob minha direção no programa SP Tecnologia, da TV ALESP: editor-chefe e apresentador do quadro sobre o universo geek e gamer.</p>
+    </div>
+
+    <div class="feature">
+      <div class="txt">
+        <span class="bar"></span>
+        <p class="kicker">TV ALESP · SP Tecnologia</p>
+        <h3 class="hed">Cultura gamer do começo ao fim</h3>
+        <p class="byline">Apresentação e editoria: Iago de Andrade</p>
+        <p>Dentro do programa SP Tecnologia, da TV ALESP, idealizei e conduzi o quadro SP Games, dedicado à cultura geek e gamer. Fui responsável por todo o processo editorial, desde a definição das pautas e construção da editoria até a apresentação, transformando tendências, novidades e temas do universo dos games em conteúdo acessível e dinâmico para o público.</p>
+        <ul class="tags" aria-label="Funções no quadro"><li>Apresentador</li><li>Editor-chefe do quadro</li><li>Pauta</li><li>Editoria</li></ul>
+        <div class="big-num"><b>58 min</b><span>de quadro de editoria própria nos três episódios abaixo</span></div>
+      </div>
+      <figure>
+        <img src="sp-games-capa.jpg" alt="Iago de Andrade no estúdio do SP Tecnologia, com a identificação 'Apresentação' na tela" width="1100" height="707">
+      </figure>
+    </div>
+
+    <ul class="eps" aria-label="Episódios com o quadro SP GAMES">
+      <li><a href="https://www.youtube.com/watch?v=iWiQEQPuM0g&amp;t=2738s" target="_blank" rel="noopener"><span class="n">01</span><span class="t">SP Games · episódio 1</span><span class="r">45:38 até 1:03:25 · 17 min 47 s</span><span class="go">Assistir ↗</span></a></li>
+      <li><a href="https://www.youtube.com/watch?v=b6jkzE-z3UU&amp;t=2407s" target="_blank" rel="noopener"><span class="n">02</span><span class="t">SP Games · episódio 2</span><span class="r">40:07 até 58:16 · 18 min 9 s</span><span class="go">Assistir ↗</span></a></li>
+      <li><a href="https://www.youtube.com/watch?v=4_jotQ-8UMI&amp;t=2770s" target="_blank" rel="noopener"><span class="n">03</span><span class="t">SP Games · episódio 3</span><span class="r">46:10 até 1:08:28 · 22 min 18 s</span><span class="go">Assistir ↗</span></a></li>
+    </ul>
+    <p class="note">Os episódios completos estão no YouTube. Cada link abre no minuto em que o quadro começa.</p>
+
+    <div class="feature flip" style="margin-top:4rem">
+      <div class="txt">
+        <span class="bar"></span>
+        <p class="kicker">Episódio completo · apresentação</p>
+        <h3 class="hed">SP Tecnologia: a febre das Escape Rooms</h3>
+        <p>Apresentei um episódio integral do SP Tecnologia dedicado ao universo das Escape Rooms, experiências imersivas em que os participantes precisam solucionar enigmas e desafios dentro de um tempo determinado para conseguir escapar. Conduzi o programa do início ao fim, estando à frente de 100% do episódio.</p>
+        <a class="read-more" href="https://www.youtube.com/watch?v=QvoZx3udFfk" target="_blank" rel="noopener">Assistir ao episódio ↗</a>
+      </div>
+      <figure>
+        <a class="play-link" href="https://www.youtube.com/watch?v=QvoZx3udFfk" target="_blank" rel="noopener" aria-label="Assistir ao episódio das Escape Rooms no YouTube">
+          <img src="escape-room-capa.jpg" alt="Iago de Andrade dentro de uma escape room, organizando pistas sobre uma mesa" width="1100" height="613" loading="lazy">
+        </a>
+      </figure>
+    </div>
+  </section>
+
+  <section id="jornal-alesp">
+    <div class="sec-head">
+      <h2 class="hed">Jornal da ALESP</h2>
+      <p>Entradas ao vivo na segunda edição do Jornal da ALESP, às quintas e sextas-feiras, apresentando conteúdos produzidos pela equipe para as redes sociais. Além de levar esse material à televisão, também atuava diretamente na criação dos conteúdos, conectando a produção digital à programação jornalística.</p>
+    </div>
+    <ul class="tags left" aria-label="Funções no jornal" style="margin:0 0 1.5rem"><li>Entradas ao vivo</li><li>Apresentação</li><li>Criação de conteúdo</li><li>Conteúdo multiplataforma</li></ul>
+    <ul class="eps" aria-label="Trechos do Jornal da ALESP">
+      <li><a href="https://www.youtube.com/watch?v=xjnr9Yk4YaQ&amp;t=1720s" target="_blank" rel="noopener"><span class="n">01</span><span class="t">A história da urna eletrônica</span><span class="r">28:40 até 32:15 · 3 min 35 s</span><span class="go">Assistir ↗</span></a></li>
+      <li><a href="https://www.youtube.com/watch?v=l_VNnWgG73Y&amp;t=1900s" target="_blank" rel="noopener"><span class="n">02</span><span class="t">Quando foi a primeira eleição?</span><span class="r">31:40 até 34:55 · 3 min 15 s</span><span class="go">Assistir ↗</span></a></li>
+      <li><a href="https://www.youtube.com/watch?v=Fby_R3Vkm7s&amp;t=3562s" target="_blank" rel="noopener"><span class="n">03</span><span class="t">A história do TRE</span><span class="r">59:22 até 1:03:10 · 3 min 48 s</span><span class="go">Assistir ↗</span></a></li>
+      <li><a href="https://www.youtube.com/watch?v=IBmmXTfQXFY&amp;t=1960s" target="_blank" rel="noopener"><span class="n">04</span><span class="t">A construção do Museu do Ipiranga</span><span class="r">32:40 até 35:20 · 2 min 40 s</span><span class="go">Assistir ↗</span></a></li>
+    </ul>
+    <p class="note">Os jornais completos estão no YouTube. Cada link abre no minuto em que a entrada começa.</p>
+  </section>
+
+  <section id="trabalhos">
+    <div class="sec-head">
+      <h2 class="hed">Trabalhos selecionados</h2>
+      <p>Conteúdos autorais, feitos por mim da pauta à edição, passando por roteiro e gravação. Aqui, temas complexos viram linguagem clara e formatos pensados para cada plataforma.</p>
+    </div>
+
+    <div class="vids">
+      <article class="vid">
+        <video controls preload="metadata" playsinline poster="entrada-ao-vivo-puc-poster.jpg" aria-label="Vídeo: entrada ao vivo no Vota SP, no encerramento da votação na PUC-SP">
+          <source src="entrada-ao-vivo-puc.mp4" type="video/mp4">
+          Seu navegador não reproduz este vídeo.
+        </video>
+        <p class="kicker">Destaque · Televisão</p>
+        <h3 class="hed">Ao vivo no encerramento da votação na PUC-SP</h3>
+        <p class="byline">Vota SP · 1º turno das Eleições 2026 · 2 min 4 s</p>
+        <p>Entrada ao vivo no telejornal Vota SP, no primeiro turno das Eleições 2026, direto dos corredores da PUC-SP, o maior colégio eleitoral de São Paulo, contando como foi o lacramento das urnas e o encerramento das sessões.</p>
+      </article>
+      <article class="vid">
+        <video controls preload="metadata" playsinline poster="justica-eleitoral-poster.jpg" aria-label="Vídeo: A história da Justiça Eleitoral">
+          <source src="justica-eleitoral.mp4" type="video/mp4">
+          Seu navegador não reproduz este vídeo.
+        </video>
+        <p class="kicker">Destaque · Reels</p>
+        <h3 class="hed">A história da Justiça Eleitoral</h3>
+        <p class="byline">Reels no formato de TV · 2 min 25 s</p>
+        <p>Criada em 1932, a Justiça Eleitoral acompanhou as transformações da democracia brasileira e do jeito de votar. Do voto em papel à urna eletrônica, o vídeo mostra como chegamos até aqui.</p>
+      </article>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filtrar por formato" id="filters">
+      <button type="button" data-t="Todos" aria-pressed="true">Todos</button>
+      <button type="button" data-t="Posts" aria-pressed="false">Posts</button>
+      <button type="button" data-t="Série" aria-pressed="false">Série</button>
+    </div>
+
+    <div class="grid" id="grid">
+      <article class="card" data-t="Posts"><p class="kicker">Posts</p><h3 class="hed">Cubatão e o Vale da Morte</h3><p>Nos anos 1980, a cidade enfrentava poluição extrema. Fiscalização, controle ambiental e mudanças nas indústrias reverteram o quadro, e hoje ela é referência em recuperação ambiental.</p><div class="links"><a href="https://www.instagram.com/p/DeKkv6HiOXz/" target="_blank" rel="noopener">Confira o conteúdo ↗</a></div></article>
+      <article class="card" data-t="Posts"><p class="kicker">Posts</p><h3 class="hed">O famoso pilili da urna eletrônica</h3><p>Há 30 anos, a forma de votar no Brasil mudou. O post mostra como eram as eleições antes da urna e as transformações do processo eleitoral.</p><div class="links"><a href="https://www.instagram.com/p/DdrsfZIiKY6/" target="_blank" rel="noopener">Confira o conteúdo ↗</a></div></article>
+      <article class="card" data-t="Posts"><p class="kicker">Posts</p><h3 class="hed">Democracia se constrói com diálogo</h3><p>Quando a sociedade participa dos debates, leva necessidades e pontos de vista ao Parlamento e amplia a discussão sobre propostas e políticas públicas.</p><div class="links"><a href="https://www.instagram.com/p/DdpBBv6DJCe/" target="_blank" rel="noopener">Confira o conteúdo ↗</a></div></article>
+      <article class="card" data-t="Posts"><p class="kicker">Posts</p><h3 class="hed">A história por trás da Independência</h3><p>O rompimento com Portugal, o Grito do Ipiranga e a tradição do Desfile Cívico-Militar de 7 de Setembro, no Sambódromo do Anhembi.</p><div class="links"><a href="https://www.instagram.com/p/Dc_EFssgf7t/" target="_blank" rel="noopener">Confira o conteúdo ↗</a></div></article>
+      <article class="card" data-t="Posts"><p class="kicker">Posts</p><h3 class="hed">O caminho de Dom Pedro I pelo Vale do Paraíba</h3><p>Em setembro de 1822, o Príncipe Regente passou por Bananal, Lorena, Guaratinguetá, Aparecida, Pindamonhangaba, Taubaté e Jacareí antes de chegar a São Paulo.</p><div class="links"><a href="https://www.instagram.com/p/Dc4Mkrmmmir/" target="_blank" rel="noopener">Confira o conteúdo ↗</a></div></article>
+      <article class="card" data-t="Posts"><p class="kicker">Posts</p><h3 class="hed">Por que o Museu do Ipiranga foi construído?</h3><p>O Edifício-Monumento marca o local ligado à Independência e reabriu em 2022, após grande reforma, com novos espaços e mais acessibilidade.</p><div class="links"><a href="https://www.instagram.com/p/Dc1rq_7Abl6/" target="_blank" rel="noopener">Confira o conteúdo ↗</a></div></article>
+      <article class="card" data-t="Posts"><p class="kicker">Posts</p><h3 class="hed">O futebol brasileiro começou entre os trilhos?</h3><p>Paranapiacaba mistura futebol, ferrovia e neblina e ajuda a entender como o esporte ganhou espaço no país.</p><div class="links"><a href="https://www.instagram.com/p/DcRkoZfgNWU/" target="_blank" rel="noopener">Confira o conteúdo ↗</a></div></article>
+      <article class="card" data-t="Posts"><p class="kicker">Posts</p><h3 class="hed">Regras do dia a dia que passaram pelo debate legislativo</h3><p>Da Lei Antifumo ao assento marcado nos estádios e à proteção do consumidor, normas do cotidiano que nasceram de discussões na Assembleia.</p><div class="links"><a href="https://www.instagram.com/p/Db_jFmTir0G/" target="_blank" rel="noopener">Confira o conteúdo ↗</a></div></article>
+      <article class="card" data-t="Posts"><p class="kicker">Posts</p><h3 class="hed">A cerveja na história de São Paulo</h3><p>Chegou com os imigrantes, acompanhou a industrialização da cidade e ganhou novos sabores. Post pelo Dia Internacional da Cerveja, 7 de agosto.</p><div class="links"><a href="https://www.instagram.com/p/DbwGXVagluN/" target="_blank" rel="noopener">Confira o conteúdo ↗</a></div></article>
+      <article class="card" data-t="Posts"><p class="kicker">Posts</p><h3 class="hed">Padre Landell de Moura, pioneiro do rádio</h3><p>Muito antes de o rádio transformar o mundo, um brasileiro já fazia história nas transmissões sem fio e ajudou a revolucionar as telecomunicações.</p><div class="links"><a href="https://www.instagram.com/p/Da3cy4-kiFg/" target="_blank" rel="noopener">Confira o conteúdo ↗</a></div></article>
+      <article class="card" data-t="Posts"><p class="kicker">Posts</p><h3 class="hed">94 anos da Revolução Constitucionalista</h3><p>Desfile cívico-militar no Obelisco do Ibirapuera em homenagem aos participantes da Revolução de 1932, que defendeu uma nova Constituição para o Brasil.</p><div class="links"><a href="https://www.instagram.com/p/DalYRisNSro/" target="_blank" rel="noopener">Confira o conteúdo ↗</a></div></article>
+      <article class="card" data-t="Posts"><p class="kicker">Posts</p><h3 class="hed">O número 9 no Obelisco do Ibirapuera</h3><p>Degraus, altura e inscrição do monumento carregam o 9, em memória de 9 de Julho de 1932 e da Revolução Constitucionalista.</p><div class="links"><a href="https://www.instagram.com/p/DagRr33AUHk/" target="_blank" rel="noopener">Confira o conteúdo ↗</a></div></article>
+      <article class="card" data-t="Série"><p class="kicker">Série</p><h3 class="hed">TBT: A Revolução Esquecida</h3><p>Em julho de 1924, a Revolta Paulista transformou o centro da capital em campo de batalha.</p><div class="links"><a href="https://www.instagram.com/p/DaTZnY7D19V/" target="_blank" rel="noopener">Confira o conteúdo ↗</a></div></article>
+      <article class="card" data-t="Posts"><p class="kicker">Posts</p><h3 class="hed">São Paulo sem prefeito?</h3><p>Por muito tempo, os vereadores comandavam a cidade. Uma lei de 1835 criou o cargo de prefeito na capital e nas vilas paulistas.</p><div class="links"><a href="https://www.instagram.com/p/DaBYpeLDXUw/" target="_blank" rel="noopener">Confira o conteúdo ↗</a></div></article>
+      <article class="card" data-t="Posts"><p class="kicker">Posts</p><h3 class="hed">Idosos viajam de graça entre cidades</h3><p>Quem tem 65 anos ou mais não paga o transporte intermunicipal em São Paulo, direito com quase 20 anos ainda pouco conhecido.</p><div class="links"><a href="https://www.instagram.com/p/DZ5qRQdkzBV/" target="_blank" rel="noopener">Confira o conteúdo ↗</a></div></article>
+      <article class="card" data-t="Posts"><p class="kicker">Posts</p><h3 class="hed">A primeira lei da Alesp</h3><p>Aprovada em 1835, criou o Diário Oficial do Estado e deu início à publicação oficial das decisões do poder público.</p><div class="links"><a href="https://www.instagram.com/p/DZvWk_riZYZ/" target="_blank" rel="noopener">Confira o conteúdo ↗</a></div></article>
+      <article class="card" data-t="Série"><p class="kicker">Série</p><h3 class="hed">SP Curiosidades: Americana</h3><p>Primeiro episódio da série, sobre a cidade marcada pela imigração americana, pela tradição country e por um dos maiores rodeios da América Latina.</p><div class="links"><a href="https://www.instagram.com/p/DZYQfPWCO7n/" target="_blank" rel="noopener">Confira o conteúdo ↗</a></div></article>
+      <article class="card" data-t="Posts"><p class="kicker">Posts</p><h3 class="hed">Alerta de segurança no celular</h3><p>PL 725/2025 autoriza um sistema de notificação por mensagem de celular com informações de segurança pública para a população.</p><div class="links"><a href="https://www.instagram.com/p/DYPb_SrAgvp/" target="_blank" rel="noopener">Confira o conteúdo ↗</a></div></article>
+      <article class="card" data-t="Posts"><p class="kicker">Posts</p><h3 class="hed">Fossas biodigestoras no campo</h3><p>Proposta leva saneamento a áreas rurais sem rede de esgoto e ainda pode gerar biofertilizante. PL 1097/2025.</p><div class="links"><a href="https://www.instagram.com/p/DX__KZQDFm4/" target="_blank" rel="noopener">Confira o conteúdo ↗</a></div></article>
+      <article class="card" data-t="Posts"><p class="kicker">Posts</p><h3 class="hed">Apostas online e proteção ao consumidor</h3><p>Projeto propõe limite de gastos, pausas obrigatórias e mais transparência para quem aposta online.</p><div class="links"><a href="https://www.instagram.com/p/DYkn_e-FNPg/" target="_blank" rel="noopener">Confira o conteúdo ↗</a></div></article>
+      <article class="card" data-t="Posts"><p class="kicker">Posts</p><h3 class="hed">Unesp: quase 50 anos de história</h3><p>Um projeto que passou pela Alesp ajudou a dar origem a uma das maiores universidades públicas do país.</p><div class="links"><a href="https://www.instagram.com/p/DY5SZXWim_j/" target="_blank" rel="noopener">Confira o conteúdo ↗</a></div></article>
+    </div>
+  </section>
+
+  <section id="projetos">
+    <div class="sec-head">
+      <h2 class="hed">Projetos independentes</h2>
+      <p>Além da carreira em redação e televisão, desenvolvo projetos próprios de comunicação, branding, produção cultural e jornalismo esportivo.</p>
+    </div>
+    <div class="grid">
+      <article class="card big"><p class="kicker">Branding</p><h3 class="hed">Vetore Comunicação Estratégica</h3><p>Estratégia, conteúdo e posicionamento de marca, para transformar negócios em autoridade digital.</p><div class="links"><a href="https://www.instagram.com/agencia.vetore/" target="_blank" rel="noopener">Ver o Instagram ↗</a></div></article>
+      <article class="card big"><p class="kicker">Produção cultural</p><h3 class="hed">From House To Techno</h3><p>Coletivo de música eletrônica de São Paulo, com agenda de eventos de house e techno, mixtapes e sets.</p><div class="links"><a href="https://www.fromhousetotechno.com.br/" target="_blank" rel="noopener">Visitar o site ↗</a><a href="https://www.instagram.com/fromhousetotechno/" target="_blank" rel="noopener">Ver o Instagram ↗</a></div></article>
+      <article class="card big"><p class="kicker">Jornalismo esportivo</p><h3 class="hed">Recanto Palestrino</h3><p>Blog de notícias, resultados e análises sobre o Palmeiras, de Brasileirão a Libertadores.</p><div class="links"><a href="https://recantopalestra.wordpress.com/" target="_blank" rel="noopener">Visitar o blog ↗</a></div></article>
+    </div>
+  </section>
+</main>
+
+<div class="contact" id="contato">
+  <div class="contact-in">
+    <div>
+      <div class="byline">Contato</div>
+      <h2 class="hed">Vamos conversar?</h2>
+      <p>Tenho interesse em projetos de jornalismo, televisão, apresentação, produção audiovisual, estratégia de conteúdo e comunicação digital.</p>
+    </div>
+    <div>
+      <a class="mail" href="mailto:iagoandrade.contato@gmail.com">iagoandrade.contato@gmail.com</a>
+      <div class="cta-row">
+        <a class="btn solid" href="curriculo-iago-de-andrade.pdf" target="_blank" rel="noopener">Currículo (PDF)</a>
+        <a class="btn" href="https://www.linkedin.com/in/iagodeandrade/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://www.instagram.com/oiagodeandrade/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap foot">
+    <a class="brand" href="#"><span>Iago de</span><span>Andrade<i>_</i></span></a>
+    <p>Os conteúdos exibidos foram produzidos para as redes sociais da Alesp. Este portfólio é um projeto pessoal e não é um canal oficial da instituição.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+
+  // Animação de digitação no título
+  var t=document.querySelector('.typer .typed');
+  if(t && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var A='Da pauta à tela:', B='Comunicação de ponta a ponta.';
+    var h1=t.parentNode;
+    var fit=function(){var cur=t.textContent;h1.style.minHeight='';t.textContent=B;var h=h1.offsetHeight;t.textContent=A;h=Math.max(h,h1.offsetHeight);t.textContent=cur;h1.style.minHeight=h+'px'};
+    fit(); addEventListener('resize',fit);
+    t.textContent='';
+    var wait=function(ms){return new Promise(function(r){setTimeout(r,ms)})};
+    var type=async function(txt,ms){for(var i=1;i<=txt.length;i++){t.textContent=txt.slice(0,i);await wait(ms+Math.random()*40)}};
+    var erase=async function(ms){while(t.textContent.length){t.textContent=t.textContent.slice(0,-1);await wait(ms)}};
+    (async function loop(){
+      await wait(400);
+      await type(A,70); await wait(1300);
+      await erase(35); await wait(300);
+      await type(B,60); await wait(4500);
+      await erase(25); await wait(400);
+      loop();
+    })();
+  }
+
+  // Carrossel de fotos
+  var s=document.getElementById('slides'),c=document.getElementById('credit');
+  var n=s.children.length;
+  function idx(){return Math.round(s.scrollLeft/s.clientWidth)}
+  function go(i){i=(i+n)%n;s.scrollTo({left:i*s.clientWidth,behavior:'smooth'})}
+  document.getElementById('prevBtn').onclick=function(){go(idx()-1)};
+  document.getElementById('nextBtn').onclick=function(){go(idx()+1)};
+  s.addEventListener('scroll',function(){c.textContent='Foto '+(idx()+1)+' de '+n},{passive:true});
+  s.addEventListener('keydown',function(e){if(e.key==='ArrowRight')go(idx()+1);if(e.key==='ArrowLeft')go(idx()-1)});
+
+  // Filtros
+  var f=document.getElementById('filters'),cards=document.querySelectorAll('#grid .card');
+  f.addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b)return;
+    f.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+    var t=b.dataset.t;
+    cards.forEach(function(k){k.hidden=!(t==='Todos'||k.dataset.t===t)});
+  });
+
+  // Menu mobile
+  var m=document.getElementById('menu'),mb=document.getElementById('menuBtn');
+  mb.onclick=function(){var o=m.classList.toggle('open');mb.setAttribute('aria-expanded',o)};
+  m.addEventListener('click',function(e){if(e.target.tagName==='A'){m.classList.remove('open');mb.setAttribute('aria-expanded','false')}});
+})();
+</script>
+</body>
+</html>
